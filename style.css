@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.inner {
+  width: 500px;;
+}
+
+.title {
+  color: green;
+  font-size: 25px;
+}
+
+.list-wrapper {
+  border: 1px solid black;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+}
+
+.list-item {
+  min-width: 400px;
+}
