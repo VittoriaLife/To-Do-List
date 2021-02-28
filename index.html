@@ -9,19 +9,34 @@
 </head>
 <body>
   <div class="wrapper">
-    <h1 class="title">To do list</h1>
-    <div class="list-wrapper">
-      <ul class="list">
-        <li class="list-item">item one</li>
-      </ul>
-     <ul class="list">
-        <li class="list-item">item one</li>
-      </u>
+    <h1 class="title">Список дел</h1>
+    <input type="text" placeholder="Добавить задачу" class="input-field">
+    <ul class="list">
+      <li class="list-item">item one<span class="todo-trash">
+
+        </span>
+      </li>
+      <li class="list-item">item two<span class="todo-trash"></span></li>
+    </ul>
+    <div class="buttons">
+      <button class="btn__save">Сохранить</button>
+      <button class="btn__clear">Очистить</button>
+      <button class="show-tips">Справка</button>
     </div>
   </div>
- 
+  <div id = "overlay">
+    <a class="closeTips">&times;</a>
+    <ul class="tips">
+        <li>Чтобы спрятать или показать поле ввода, кликните на карандаш</li>
+        <li>Для добавления списка дел напишите текст в поле ввода и нажмите Ввод</li>
+        <li>Чтобы удалить один пункт, наведите на него и нажмите на значок корзины</li>
+        <li>Чтобы удалить все списки дел, нажмите "Очистить"</li>
+        <li>Нажмите "Сохранить", чтобы сохранить список дел на потом</li>
+    </ul>
+  </div>
 
 
   <script src='app.js'></script>
 </body>
 </html>
+
