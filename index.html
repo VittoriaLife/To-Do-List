@@ -10,10 +10,22 @@
         <link rel="icon" type="image/gif" href="assets/animated_favicon.gif">
     </head>
     <body>
-        <div id="todo">
+      <div class="wrapper">
+        <div class="inner">
+          <h1 class="title">To do list</h1>
+          <ul class="list">
+            <li class="list__item">One</li>
+          </ul>
+          <form class="form">
+            <input type="text" placeholder="Add task" class="form__input">
+            <button type="button" class="form__btn">Add task</button>
+          </form>
+        </div>
+      </div>
+        <!-- <div id="todo">
             <h1>Мои списки дел <i id="pensil" class="fas fa-pencil-alt"></i></h1>
-            <input type="text" placeholder="Добавить список">
-            <ul class="todos">
+            <input type="text" placeholder="Добавить список" class="add-item">
+            <ul class="to-do-list">
                 <li><span class="todo-text">Вымыть кухню</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
                 <li><span class="todo-text">Пойти в театр</span><span class="todo-trash"><i class="fas fa-trash-alt"></i></span></li>
             </ul>
@@ -32,7 +44,7 @@
                 <li>Чтобы удалить все списки дел, нажмите "Очистить"</li>
                 <li>Нажмите "Сохранить", чтобы сохранить список дел на потом</li>
             </ul>
-        </div>
+        </div> -->
 
         <script src="app.js"></script>
        
