@@ -1,26 +1,53 @@
 'use strict';
 
 const list = document.querySelector('.list');
-const listItem = document.querySelector('.list__item');
 const formInput = document.querySelector('.form__input');
 const formBtn = document.querySelector('.form__btn');
 
 
 function addListItem() {
-  formBtn.addEventListener('change', function() {
-    const li = document.createElement('li');
-    li.classList.add('list__item');
-    li.innerText = formBtn.value;
-    list.appendChild(li);
-  })
+  const li = document.createElement('li');
+  li.classList.add('list__item');
 
-  return li;
+  if (formInput.value === '' || formInput.value === ' ') {
+    formInput.setCustomValidity('Enter your task')
+  } else {
+    li.innerText = formInput.value;
+    list.appendChild(li);
+    formInput.value = ' ';
+  }
+};
+
+
+function setId() {
+  const listLength = list.children.length;
+  let listItems = document.querySelectorAll('.list__item');
+
+  for(let i = 0; i < listLength; i++) {
+    listItems[i].setAttribute('id', i);
+  }
+
+  return listItems;
+};
+
+function putInLocalStorage() {
+  const storage = localStorage;
+
+  storage.setItem(listItems.getElementById('id'), listItems.getAttribute('id'))
+
 };
 
 
 
 formBtn.addEventListener('click', function() {
   addListItem();
+  setId();
+  // putInLocalStorage();
+});
 
-  // list.append(li);
-})
+
+
+
+
+
+
