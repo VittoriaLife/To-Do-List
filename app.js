@@ -9,41 +9,52 @@ function addListItem() {
   const li = document.createElement('li');
   li.classList.add('list__item');
 
-  if (formInput.value === '' || formInput.value === ' ') {
+  if (formInput.value === '') {
     formInput.setCustomValidity('Enter your task')
   } else {
     li.innerText = formInput.value;
-    list.appendChild(li);
+    list.append(li);
     formInput.value = ' ';
   }
 };
 
 
-function setId() {
-  const listLength = list.children.length;
-  let listItems = document.querySelectorAll('.list__item');
+formBtn.addEventListener('click', function(evt) {
+  // evt.preventDefault();
 
-  for(let i = 0; i < listLength; i++) {
-    listItems[i].setAttribute('id', i);
-  }
-
-  return listItems;
-};
-
-function putInLocalStorage() {
-  const storage = localStorage;
-
-  storage.setItem(listItems.getElementById('id'), listItems.getAttribute('id'))
-
-};
-
-
-
-formBtn.addEventListener('click', function() {
   addListItem();
-  setId();
-  // putInLocalStorage();
 });
+
+
+
+
+
+
+
+
+// function setId() {
+//   const listLength = list.children.length;
+//   let listItems = document.querySelectorAll('.list__item');
+
+//   for(let i = 0; i < listLength; i++) {
+//     listItems[i].setAttribute('id', i);
+//   }
+
+//   return listItems;
+// };
+
+// function putInLocalStorage() {
+//   const storage = localStorage;
+
+//   storage.setItem(listItems.getElementById('id'), listItems.getAttribute('id'))
+
+// };
+
+// formBtn.addEventListener('click', function() {
+//   addListItem();
+//   // setId();
+//   // putInLocalStorage();
+// });
 
 
 
