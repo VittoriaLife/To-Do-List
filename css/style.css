@@ -142,9 +142,6 @@ body {
   background: rgba(255, 255, 255, .2);
 }
 
-
-
-
 .form__input::-moz-placeholder { color: black; }
 .form__input::-webkit-input-placeholder { color: black; }
 .form__input::-ms-input-placeholder { color: black; }
@@ -157,29 +154,34 @@ body {
 .form__input:focus:-moz-placeholder           {color: transparent}
 .form__input:focus:-ms-input-placeholder      {color: transparent}
 
-/* .list__item:hover:before {
-  content: "";
-  position: absolute;
-  right: 15px;
-  top: 6px;
-  width: 2px;
-  height: 18px;
-  background-color: black;
-  transform: rotate(45deg);
+.list__item {
+  position: relative;
 }
 
-.list__item:hover:after{
-  content: "";
+
+.list__btn-delete {
   position: absolute;
-  right: 15px;
-  top: 6px;
-  width: 2px;
-  height: 18px;
-  background-color: black;
-  transform: rotate(-45deg);
-} */
-
-.list__item:hover {
-
+  right: 5px;
+  top: 15px;
+  width: 28px;
+  height: 28px;
+  background-image: url("../img/icon-trash-grey.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
+
+.list__btn-delete:hover {
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  width: 28px;
+  height: 28px;
+  background-image: url("../img/icon-trash-black.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
