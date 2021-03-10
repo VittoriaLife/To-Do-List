@@ -3,6 +3,8 @@
 const list = document.querySelector('.list');
 const formInput = document.querySelector('.form__input');
 const formBtn = document.querySelector('.form__btn');
+const itemsIdArray = [];
+const buttonsIdArray = []
 
 
 function addListItem() {
@@ -22,25 +24,24 @@ function addListItem() {
 };
 
 
+
 function setId() {
-  const liItems = document.querySelectorAll('.list__item');
-  const deleteButtons = document.querySelectorAll('.list__btn-delete');
+  let liItems = document.querySelectorAll('.list__item');
+  let deleteButtons = document.querySelectorAll('.list__btn-delete');
 
   for(let i = 0; i < liItems.length; i++) {
     liItems[i].setAttribute('id', i);
     deleteButtons[i].setAttribute('id', i);
   }
+
+  for(let k = 0; k < liItems.length; k++){
+    let item = liItems[k].getAttribute('id');
+    let button = deleteButtons[k].getAttribute('id');
+    
+    itemsIdArray[k] = item;
+    buttonsIdArray[k] = button;
+  };
 };
-
-
-// function removeListItem() {
-//   const itemsRemove = document.querySelectorAll('list__item');
-//   const btnsDelete = document.querySelectorAll('list__btn-delete');
-  
-  
-
-// }
-
 
 
 
@@ -50,11 +51,7 @@ formBtn.addEventListener('click', function(evt) {
 
   addListItem();
   setId();
+ 
 });
-
-
-
-
-
 
 
