@@ -22,40 +22,45 @@ function addListItem() {
     li.append(p);
     li.append(btn);
     list.append(li);
-    formInput.value = ' ';
-    formInput.setCustomValidity('');
-  } else {
-    formInput.setCustomValidity('Please, enter to-do');
+    formInput.value = '';
   }
 
 };
 
 
-function setId() {
-  let liItems = document.querySelectorAll('.list__item');
-  let deleteButtons = document.querySelectorAll('.list__btn-delete');
+function deleteItem(listItem) {
+  listItem.addEventListener('click', function name(params) {
+    listItem.removeChild();
+  });
+  
+};
 
-  for(let i = 0; i < liItems.length; i++) {
-    liItems[i].setAttribute('id', i);
-    deleteButtons[i].setAttribute('id', i);
-  }
+// function setId() {
+//   let liItems = document.querySelectorAll('.list__item');
+//   let deleteButtons = document.querySelectorAll('.list__btn-delete');
 
-  for(let k = 0; k < liItems.length; k++){
-    let item = liItems[k].getAttribute('id');
-    let button = deleteButtons[k].getAttribute('id');
+//   for(let i = 0; i < liItems.length; i++) {
+//     liItems[i].setAttribute('id', i);
+//     deleteButtons[i].setAttribute('id', i);
+//   }
+
+//   for(let k = 0; k < liItems.length; k++){
+//     let item = liItems[k].getAttribute('id');
+//     let button = deleteButtons[k].getAttribute('id');
     
-    itemsIdArray[k] = item;
-    buttonsIdArray[k] = button;
-  };
-};
+//     itemsIdArray[k] = item;
+//     buttonsIdArray[k] = button;
+//   };
+// };
 
 
 
 
 formBtn.addEventListener('click', function(evt) {
-  // evt.preventDefault();
+  evt.preventDefault();
 
   addListItem();
+  deleteItem(btn);
   // setId();
  
 });
