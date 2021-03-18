@@ -1,39 +1,108 @@
 'use strict';
 
-const list = document.querySelector('.list')
-const formInput = document.querySelector('.form__input');
-const formBtn = document.querySelector('.form__btn');
-const itemsIdArray = [];
-const buttonsIdArray = []
+// const list = document.querySelector('.list')
+// const formInput = document.querySelector('.form__input');
+// const formBtn = document.querySelector('.form__btn');
 
 
-function addListItem() {
-  const li = document.createElement('li');
-  const p = document.createElement('p');
-  const btn = document.createElement('button');
-  let toDoValue = formInput.value;
+const addMessage = document.querySelector('.message');
+const addButton = document.querySelector('.add');
+const todo = document.querySelector('.todo');
+let todoList = [];
 
-  li.classList.add('list__item');
-  p.classList.add('list__text');
-  btn.classList.add('list__btn-delete');
+if(localStorage.getItem('todo')) {
+  todoList = JSON.parse(localStorage.getItem('todo'));
 
-  if(toDoValue) {
-    p.innerText = formInput.value;
-    li.append(p);
-    li.append(btn);
-    list.append(li);
-    formInput.value = '';
+  displayMessages();
+}
+
+addButton.addEventListener('click', function(evt) {
+  evt.preventDefault();
+
+  if(!addMessage.value) {
+    return;
+  }
+  let newToDo = {
+    todo: addMessage.value,
+    checked: false,
+    important: false
   }
 
-};
+  todoList.push(newToDo);
+
+  displayMessages();
+  localStorage.setItem("todo", JSON.stringify(todoList));
+  addMessage.value = '';
+});
 
 
-function deleteItem(listItem) {
-  listItem.addEventListener('click', function name(params) {
-    listItem.removeChild();
+function displayMessages() {
+  let displayMessage = '';
+  if(todoList.length === 0) {
+    todo.innerHTML = '';
+  }
+  todoList.forEach(function(item, i) {
+      displayMessage += `
+        <li>
+          <input type="checkbox" id="item_${i}" ${item.checked ? "checked" : ""}>
+          <label for="item_${i}" class="${item.important ? "important" : ""}">${item.todo}</label>
+        </li>
+      `
+      todo.innerHTML = displayMessage;
   });
-  
-};
+}
+
+todo.addEventListener('change', function(evt) {
+  let idInput = evt.target.getAttribute('id');
+  let forLabel = todo.querySelector('[for='+ idInput +']');
+  let valueLabel = forLabel.innerHTML;
+
+  todoList.forEach(function(item) {
+    if(item.todo === valueLabel) {
+      item.checked = !item.checked;
+      localStorage.setItem('todo', JSON.stringify(todoList));
+    }
+  });
+});
+
+
+todo.addEventListener('contextmenu', function(evt) {
+    evt.preventDefault();
+
+    todoList.forEach(function(item, i) {
+      if(item.todo === evt.target.innerHTML) {
+        if(evt.ctrlKey || evt.metaKey) {
+            todoList.splice(i, 1);
+        } else {
+          item.important = !item.important;
+        }
+        
+        displayMessages();
+        localStorage.setItem('todo', JSON.stringify(todoList));
+      }
+    }); 
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function deleteItem(listItem) {
+//   listItem.addEventListener('click', function name(params) {
+//     listItem.removeChild();
+//   });
+// };
+
 
 // function setId() {
 //   let liItems = document.querySelectorAll('.list__item');
@@ -53,100 +122,3 @@ function deleteItem(listItem) {
 //   };
 // };
 
-
-
-
-formBtn.addEventListener('click', function(evt) {
-  evt.preventDefault();
-
-  addListItem();
-  deleteItem(btn);
-  // setId();
- 
-});
-
-
-
-
-// const clear = document.querySelector('.clear');
-// const dateElement = document.getElementById('date');
-// const list = document.getElementById('list');
-// const input = document.getElementById('input');
-// const CHECK = 'fa-check-cirkle';
-// const UNCHEK = 'fa-circle-thin';
-// const LINE__THROUGH = 'lineThrough';
-
-// let LIST = [];
-// let id = 0;
-
-
-
-
-// function addToDo (toDo, id, done, trash) {
-
-//   if(trash) {
-//     return;
-//   }
-
-//   const DONE = done ? CHECK : UNCHEK;
-//   const LINE  = done ? LINE__THROUGH : '';
-
-//   const text = `<li class="item">
-//                   <i class="fa ${DONE} complete" job="complite id="${id}"></i>
-//                   <p class="text ${LINE}">${toDo}</p>
-//                   <i class="fa fa-trash-o delete" job="delete" id="${id}"></i>
-//               </li>`
-              
-//   const position = 'beforeend';
-
-//   list.insertAdjacentHTML(position, text);
-// };
-
-
-// function completeToDO(element) {
-//   element.classList.toggle(CHECK);
-//   element.classList.toggle(UNCHEK);
-
-//   element.parentNode.querySelector('.text').classList.toggle(LINE__THROUGH);
-//   LIST[element.id].done = LIST[element.id].done ? false : true;
-// };
-
-// function removeToDo(el) {
-//   el.parentNode.parentNode.removeChild(el.parentNode);
-
-//   LIST[el.id].trash = true;
-// }
-
-
-// list.addEventListener('click', function name(evt) {
-//   let element = evt.target;
-
-//   const elementJob = evt.target.attributes.job.value;
-
-//   if(elementJob === 'complete') {
-//       completeToDO(element);
-//   } else if(elementJob === 'delete') {
-//       removeToDo(element);
-//   }
-// });
-
-
-// document.addEventListener('keyup', function(evt) {
-//   if(evt.keyCode === 13){
-//     const toDo = input.value;
-//       if(toDo) {
-//         addToDo(toDo, id, false, false);
-
-//         LIST.push( 
-//           {
-//             name: toDo,
-//             id: id,
-//             done: false,
-//             trash: false
-//           }
-//         );
-//         input.value = '';
-//         id++;
-//       }
-//   }
-// });
