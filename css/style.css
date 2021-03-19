@@ -90,11 +90,6 @@ input[type=checkbox]:checked + label:before {
 
 
 
-
-
-
-
-
  @font-face {
   font-family: "Cormorant Garamond Medium Regular";
   src: url("/fonts/cormorantgaramond-medium-webfont.woff2") format("woff2"),
@@ -118,9 +113,9 @@ input[type=checkbox]:checked + label:before {
   background: #CC95C0;  
    /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #7AA1D2, #DBD4B4, #CC95C0);    
-  /* Chrome 10-25, Safari 5.1-6 */ */
+  /* Chrome 10-25, Safari 5.1-6 */ 
   background: linear-gradient(to left, #7AA1D2, #DBD4B4, #CC95C0); 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ */
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
 } 
 
  .wrapper {
