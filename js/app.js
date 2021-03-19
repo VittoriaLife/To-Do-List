@@ -6,46 +6,50 @@ const formBtn = document.querySelector('.form__btn');
 let itemsList= [];
 
 
-if(localStorage.getItem('todo')) {
-  itemsList = JSON.parse(localStorage.getItem('todo'));
+// if(localStorage.getItem('todo')) {
+//   itemsList = JSON.parse(localStorage.getItem('todo'));
 
-  createToDo();
-}
+//   createToDo();
+// }
 
 function createToDo() {
-let listItem;
 
-itemsList.forEach(function(item, i)
-  {
-    list.insertAdjacentHTML('beforeend', `<li class="list__item" id="item_${i}">
- <p>${item.name}</p>
- <button class="list__btn-delete"></button>    
-</li>`);
-  }); 
-  
+  const listItem = document.createElement('li');
+  listItem.classList.add('list__item');
 
- formInput.value = '';
+  const listText = document.createElement('p');
+  listText.textContent = formInput.value;
+
+  const listButton = document.createElement('button');
+  listButton.classList.add('list__btn-delete');
+
+  listItem.append(listText);
+  listItem.append(listButton);
+
+  list.append(listItem);
+
+  formInput.value = '';
 
 };
 
 
-function putInArray() {
-  let newToDo = {
-    name: formInput.value,
-    done: false,
-    trash: false
-  }
 
-  itemsList.push(newToDo);
-}
+// function putInArray() {
+//   let newToDo = {
+//     name: formInput.value,
+//     done: false,
+//     trash: false
+//   }
+
+//   itemsList.push(newToDo);
+// }
 
 formBtn.addEventListener('click', function(evt) {
   evt.preventDefault();
 
-  putInArray();
   createToDo();
   
-  localStorage.setItem('todo', JSON.stringify(itemsList));
+  // localStorage.setItem('todo', JSON.stringify(itemsList));
 });
 
 
