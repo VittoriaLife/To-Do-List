@@ -2,14 +2,11 @@
 
 import {getData, recordData, deleteToDoItem} from './database.js';
 
-//
 const formInput = document.querySelector('.form__input'); 
-
-//
 const formBtn = document.querySelector('.form__btn');
 
 
-//
+// функция которая создает/сохраняет пункты списка при октрытии/перезагрузке страницы, если localStorage не пустой
 function init(params) {
 
   //
@@ -24,13 +21,12 @@ function init(params) {
   dataStore.forEach((toDo) => {
     createToDo(toDo.id, toDo.text);
   })
-}
+};
 
-
-//
 init();
 
-//
+
+// функция удаляющая пункт списка
 function deleteToDo(id) {
 
   //

@@ -5,8 +5,9 @@ export function getData(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
+
 // функция создания данных для localStorage
-export function recordData(text, key) {
+export function recordData(text, key) { 
 
   // создание id путем генерации числа в миллисекундах из даты, превращения этого числа в строку с использованием 16 системы исчисления
   const id = (+new Date()).toString(16); 
@@ -37,7 +38,8 @@ export function recordData(text, key) {
   return id;
 }
 
-// функция удаления пункта списка
+
+// функция 
 export function deleteToDoItem(id, key) {
 
   // получаем в переменную данные из LocalStorage
@@ -47,7 +49,6 @@ export function deleteToDoItem(id, key) {
   const newList = allItems.filter(todo => {
     return todo.id !== id;
   });
-
 
   // записываем в localStorage новый массив элементов
   localStorage.setItem(key, JSON.stringify(newList));
