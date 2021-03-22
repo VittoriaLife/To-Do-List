@@ -39,7 +39,7 @@ export function recordData(text, key) {
 }
 
 
-// функция 
+// функция записывающая в localStorage все ненужные на данный момент пункты (удаляющая нужный пункт списка из localStorage)
 export function deleteToDoItem(id, key) {
 
   // получаем в переменную данные из LocalStorage
