@@ -70,6 +70,7 @@ function createToDo(id, text) {
   const listText = document.createElement('input');
   listText.classList.add('list__text');
   listText.setAttribute('toDoId', id);
+  listText.setAttribute('type', 'text');
 
   listText.value = text;
 

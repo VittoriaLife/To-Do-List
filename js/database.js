@@ -15,7 +15,8 @@ export function recordData(text, key) {
   // новый пункт списка в виде объекта
   const newToDo = { 
     text,
-    id
+    id,
+    done: false
   }
 
   // получаем в переменную данные из LocalStorage

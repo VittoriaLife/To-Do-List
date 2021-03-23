@@ -53,15 +53,16 @@
 
 .list__item {
   display: flex;
+  position: relative;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, .4);
 }
 
 .list__text {
   padding: 17px 30px;
-  margin-bottom: 20px;
   color: black;
-  border: 1px solid rgba(0, 0, 0, .4);
+  border: none;
   background: none;
-  text-transform: uppercase;
   letter-spacing: 2px;
   width: 100%;
 }
@@ -69,6 +70,42 @@
 .list__text:hover {
   background: rgba(255, 255, 255, .2);
 }
+
+
+.list__item--done {
+  background-color: rgb(170, 170, 170);
+}
+
+.list__item--done > .list__text {
+  text-decoration: line-through;
+}
+
+.list__btn-delete {
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  width: 28px;
+  height: 28px;
+  background-image: url("../img/icon-trash-grey.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+
+.list__btn-delete:hover {
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  width: 28px;
+  height: 28px;
+  background-image: url("../img/icon-trash-black.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+} 
 
 
 .form {
@@ -162,34 +199,5 @@
 .form__input:focus:-moz-placeholder           {color: transparent}
 .form__input:focus:-ms-input-placeholder      {color: transparent}
 
-.list__item {
-  position: relative;
-}
 
 
-.list__btn-delete {
-  position: absolute;
-  right: 5px;
-  top: 15px;
-  width: 28px;
-  height: 28px;
-  background-image: url("../img/icon-trash-grey.svg");
-  background-repeat: no-repeat;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-}
-
-
-.list__btn-delete:hover {
-  position: absolute;
-  right: 5px;
-  top: 15px;
-  width: 28px;
-  height: 28px;
-  background-image: url("../img/icon-trash-black.svg");
-  background-repeat: no-repeat;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-} 
