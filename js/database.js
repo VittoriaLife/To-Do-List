@@ -53,3 +53,5 @@ export function deleteToDoItem(id, key) {
   // записываем в localStorage новый массив элементов
   localStorage.setItem(key, JSON.stringify(newList));
 }
+
+

@@ -2,6 +2,7 @@
 
 import {getData, recordData, deleteToDoItem} from './database.js';
 
+const list = document.querySelector('.list');
 const formInput = document.querySelector('.form__input'); 
 const formBtn = document.querySelector('.form__btn');
 
@@ -41,6 +42,7 @@ function deleteToDo(id) {
   listItem.remove();
 };
 
+
 // функция создания пункта списка и пунктов меню
 function createToDo(id, text) {
   const list = document.querySelector('.list');
@@ -51,7 +53,9 @@ function createToDo(id, text) {
   // задаем id
   listItem.setAttribute('toDoId', id);
   
-  const listText = document.createElement('p');
+  const listText = document.createElement('input');
+  listText.classList.add('list__text');
+  listText.setAttribute('toDoId', id);
   listText.textContent = text;
 
   //
@@ -74,6 +78,7 @@ function createToDo(id, text) {
   list.append(listItem);
 };
 
+
 // навешиваем слушателя на кнопку добавления пункта меню
 formBtn.addEventListener('click', function(evt) {
   //
@@ -89,3 +94,20 @@ formBtn.addEventListener('click', function(evt) {
   formInput.value = '';
 });
 
+
+function editToDoItem(id, text) {
+  const textId = document.querySelector(`[toDoId='${id}']`);
+
+ if(textId === li) {
+   textId.text
+ }
+
+}
+
+
+list.addEventListener('click', function(evt) {
+  const li = evt.target.getAttribute('toDoId');
+
+
+  
+});
