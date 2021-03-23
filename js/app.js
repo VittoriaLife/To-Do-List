@@ -2,7 +2,6 @@
 
 import {getData, recordData, deleteToDoItem} from './database.js';
 
-const list = document.querySelector('.list');
 const formInput = document.querySelector('.form__input'); 
 const formBtn = document.querySelector('.form__btn');
 
@@ -43,6 +42,21 @@ function deleteToDo(id) {
 };
 
 
+function editToDoItem(input) {
+  const items = getData('todo');
+  const activeItemId = input.getAttribute('toDoId');
+
+  const newItem = items.map(el => {
+    if(el.id === activeItemId) {
+      el.text = input.value;
+    }
+    return el;
+  });
+
+  localStorage.setItem('todo', JSON.stringify(newItem));
+};
+
+
 // функция создания пункта списка и пунктов меню
 function createToDo(id, text) {
   const list = document.querySelector('.list');
@@ -56,7 +70,8 @@ function createToDo(id, text) {
   const listText = document.createElement('input');
   listText.classList.add('list__text');
   listText.setAttribute('toDoId', id);
-  listText.textContent = text;
+
+  listText.value = text;
 
   //
   const listButton = document.createElement('button');
@@ -73,6 +88,14 @@ function createToDo(id, text) {
     deleteToDo(getId);
   });
 
+
+  listText.addEventListener('change', (evt) => {
+    const activeItem = evt.target;
+
+    editToDoItem(activeItem);
+  });
+
+
   listItem.append(listText);
   listItem.append(listButton);
   list.append(listItem);
@@ -82,8 +105,12 @@ function createToDo(id, text) {
 // навешиваем слушателя на кнопку добавления пункта меню
 formBtn.addEventListener('click', function(evt) {
   //
-  evt.preventDefault();
+  // evt.preventDefault();
 
+ if(!formInput.value) {
+   formInput.setCustomValidity('Enter a new task');
+   return;
+  }
   // 
   const id = recordData(formInput.value, 'todo');
 
@@ -95,19 +122,3 @@ formBtn.addEventListener('click', function(evt) {
 });
 
 
-function editToDoItem(id, text) {
-  const textId = document.querySelector(`[toDoId='${id}']`);
-
- if(textId === li) {
-   textId.text
- }
-
-}
-
-
-list.addEventListener('click', function(evt) {
-  const li = evt.target.getAttribute('toDoId');
-
-
-  
-});
