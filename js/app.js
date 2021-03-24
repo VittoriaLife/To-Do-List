@@ -57,6 +57,24 @@ function editToDoItem(input) {
 };
 
 
+function makeItemDone(element) {
+  const allElements = getData('todo');
+  const activeElementId = element.getAttribute('toDoId');
+  
+
+  const newElements = allElements.map(item => {
+    if(item.id === activeElementId) {
+      item.done = true;
+    } else {
+      item.done = false;
+    }
+
+    return item;
+  });
+
+  localStorage.setItem('todo', JSON.stringify(newElements));
+};
+
 // функция создания пункта списка и пунктов меню
 function createToDo(id, text) {
   const list = document.querySelector('.list');
@@ -81,7 +99,7 @@ function createToDo(id, text) {
   // задаем такой же id как и у пункта меню
   listButton.setAttribute('toDoId', id);
 
-  // навешиваем слушатель на кнопку, чтобы получить id кнопки, затем найти в функции deleteToDo пункт списка с таким же id и удалить его
+  // навешиваем событие клик на кнопку, чтобы получить id кнопки, затем найти в функции deleteToDo пункт списка с таким же id и удалить его
   listButton.addEventListener('click', (evt) => {
     //
     const getId = evt.target.getAttribute('toDoId');
@@ -89,13 +107,21 @@ function createToDo(id, text) {
     deleteToDo(getId);
   });
 
-
+  // событие на изменение текста 
   listText.addEventListener('change', (evt) => {
     const activeItem = evt.target;
 
     editToDoItem(activeItem);
   });
 
+  // событые клика на пункт списка
+  listItem.addEventListener('click', (evt) => {
+    const activeElement = evt.target;
+    const activeParent = activeElement.parentNode;
+    activeParent.classList.toggle('list__item--done');
+
+    makeItemDone(activeElement);
+  });
 
   listItem.append(listText);
   listItem.append(listButton);
@@ -112,6 +138,7 @@ formBtn.addEventListener('click', function(evt) {
    formInput.setCustomValidity('Enter a new task');
    return;
   }
+
   // 
   const id = recordData(formInput.value, 'todo');
 

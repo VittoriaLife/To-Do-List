@@ -58,6 +58,10 @@
   border: 1px solid rgba(0, 0, 0, .4);
 }
 
+.list__item:hover {
+  background: rgba(255, 255, 255, .2);
+}
+
 .list__text {
   padding: 17px 30px;
   color: black;
@@ -65,10 +69,6 @@
   background: none;
   letter-spacing: 2px;
   width: 100%;
-}
-
-.list__text:hover {
-  background: rgba(255, 255, 255, .2);
 }
 
 
