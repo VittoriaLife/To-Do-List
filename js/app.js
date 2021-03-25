@@ -82,9 +82,7 @@ function createToDo(id, text) {
   listItem.addEventListener('click', (evt) => {
     if(evt.ctrlKey) {
       const activeElement = evt.target;
-      const activeElementId = activeElement.getAttribute('toDoId');
-
-      doneToDoItem(activeElementId, 'todo', activeElement, listItem);
+      doneToDoItem('todo', activeElement, listItem);
     };
  });
 

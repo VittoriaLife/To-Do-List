@@ -30,7 +30,6 @@
  .wrapper {
   display: flex;
   justify-content: center;
-  
 }
 
 .inner {
@@ -67,10 +66,8 @@
   width: 100%;
 }
 
-
 .list__item--done {
   background-color: rgb(170, 170, 170);
-
 }
 
 .list__item--done > .list__text {
@@ -89,7 +86,6 @@
   background-color: transparent;
   border: none;
 }
-
 
 .list__btn-delete:hover {
   position: absolute;
@@ -142,7 +138,6 @@
   letter-spacing: 2px;
 }
 
-
 .form__btn:before, .form__btn:after {
   content: "";
   position: absolute;
@@ -192,7 +187,6 @@
 .form__input::-ms-input-placeholder { color: black; }
 .form__input::-ms-input-placeholder { color: black; }
 .form__input::placeholder { color: black; } 
-
 
 .form__input:focus::-webkit-input-placeholder {color: transparent}
 .form__input:focus::-moz-placeholder          {color: transparent}

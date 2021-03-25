@@ -70,8 +70,7 @@ export function editToDoItem(id, key, text) {
 };
 
 
-
-export function doneToDoItem(id, key, input, item) {
+export function doneToDoItem(key, input, item) {
   const elements = getData(key);
   item.classList.toggle('list__item--done');
   input.toggleAttribute('disabled');
@@ -85,6 +84,5 @@ export function doneToDoItem(id, key, input, item) {
     return el;
   });
   
-
   localStorage.setItem(key, JSON.stringify(newList));
 };
