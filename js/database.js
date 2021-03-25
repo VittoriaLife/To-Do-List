@@ -77,10 +77,11 @@ export function doneToDoItem(id, key, input, item) {
   input.toggleAttribute('disabled');
 
   const newList = elements.map(el => {
-    if(el.id === id) {
+    if(input.hasAttribute('disabled')) {
       el.done = true;
+    } else {
+      el.done = false;
     }
-
     return el;
   });
   
