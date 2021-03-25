@@ -55,4 +55,35 @@ export function deleteToDoItem(id, key) {
   localStorage.setItem(key, JSON.stringify(newList));
 }
 
+// функция редактирования текста и записи отредактированной весрии в localStorage
+export function editToDoItem(id, key, text) {
+  const items = getData(key);
+  
+  const newItem = items.map(el => {
+    if(el.id === id) {
+      el.text = text.value;
+    }
+    return el;
+  });
 
+  localStorage.setItem(key, JSON.stringify(newItem));
+};
+
+
+
+export function doneToDoItem(id, key, input, item) {
+  const elements = getData(key);
+  item.classList.toggle('list__item--done');
+  input.toggleAttribute('disabled');
+
+  const newList = elements.map(el => {
+    if(el.id === id) {
+      el.done = true;
+    }
+
+    return el;
+  });
+  
+
+  localStorage.setItem(key, JSON.stringify(newList));
+};

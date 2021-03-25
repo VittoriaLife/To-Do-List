@@ -1,9 +1,10 @@
 'use strict';
 
-import {getData, recordData, deleteToDoItem} from './database.js';
+import {getData, recordData, deleteToDoItem, editToDoItem, doneToDoItem} from './database.js';
 
 const formInput = document.querySelector('.form__input'); 
 const formBtn = document.querySelector('.form__btn');
+
 
 
 // функция которая создает/сохраняет пункты списка при отктрытии/перезагрузке страницы, если localStorage не пустой
@@ -42,46 +43,12 @@ function deleteToDo(id) {
 };
 
 
-function editToDoItem(input) {
-  const items = getData('todo');
-  const activeItemId = input.getAttribute('toDoId');
-
-  const newItem = items.map(el => {
-    if(el.id === activeItemId) {
-      el.text = input.value;
-    }
-    return el;
-  });
-
-  localStorage.setItem('todo', JSON.stringify(newItem));
-};
-
-
-function makeItemDone(element) {
-  const allElements = getData('todo');
-  const activeElementId = element.getAttribute('toDoId');
-  
-
-  const newElements = allElements.map(item => {
-    if(item.id === activeElementId) {
-      item.done = true;
-    } else {
-      item.done = false;
-    }
-
-    return item;
-  });
-
-  localStorage.setItem('todo', JSON.stringify(newElements));
-};
-
 // функция создания пункта списка и пунктов меню
 function createToDo(id, text) {
   const list = document.querySelector('.list');
 
   const listItem = document.createElement('li');
   listItem.classList.add('list__item');
-
   // задаем id
   listItem.setAttribute('toDoId', id);
   
@@ -89,15 +56,14 @@ function createToDo(id, text) {
   listText.classList.add('list__text');
   listText.setAttribute('toDoId', id);
   listText.setAttribute('type', 'text');
-
   listText.value = text;
 
-  //
   const listButton = document.createElement('button');
   listButton.classList.add('list__btn-delete');
-
   // задаем такой же id как и у пункта меню
   listButton.setAttribute('toDoId', id);
+
+
 
   // навешиваем событие клик на кнопку, чтобы получить id кнопки, затем найти в функции deleteToDo пункт списка с таким же id и удалить его
   listButton.addEventListener('click', (evt) => {
@@ -108,24 +74,28 @@ function createToDo(id, text) {
   });
 
   // событие на изменение текста 
-  listText.addEventListener('change', (evt) => {
+  list.addEventListener('change', (evt) => {
     const activeItem = evt.target;
-
-    editToDoItem(activeItem);
+    const activeItemId = activeItem.getAttribute('toDoId');
+    
+    editToDoItem(activeItemId, 'todo', activeItem);
   });
 
-  // событые клика на пункт списка
+
   listItem.addEventListener('click', (evt) => {
-    const activeElement = evt.target;
-    const activeParent = activeElement.parentNode;
-    activeParent.classList.toggle('list__item--done');
+    if(evt.ctrlKey) {
+      const activeElement = evt.target;
+      const activeElementId = activeElement.getAttribute('toDoId');
 
-    makeItemDone(activeElement);
-  });
+      doneToDoItem(activeElementId, 'todo', activeElement, listItem);
+    };
+    
+ });
 
   listItem.append(listText);
   listItem.append(listButton);
   list.append(listItem);
+
 };
 
 
